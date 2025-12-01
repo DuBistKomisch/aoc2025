@@ -1,0 +1,15 @@
+{
+  "name": "aoc2025",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "scripts": {
+    "d01": "bun src/index.ts d01 < input/d01"
+  }
+}
