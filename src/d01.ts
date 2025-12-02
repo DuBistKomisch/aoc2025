@@ -36,4 +36,4 @@ export function p2(input: string) {
     }
   }
   return password;
-}
+};
