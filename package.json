@@ -11,6 +11,7 @@
   },
   "scripts": {
     "d01": "bun src/index.ts d01 < input/d01",
-    "d02": "bun src/index.ts d02 < input/d02"
+    "d02": "bun src/index.ts d02 < input/d02",
+    "d03": "bun src/index.ts d03 < input/d03"
   }
 }
