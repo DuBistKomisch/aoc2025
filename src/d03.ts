@@ -1,3 +1,5 @@
+import { sum } from './util';
+
 export function p1(input: string) {
   return input.trim().split('\n')
     .map(line => maxDigits(line, 2))
@@ -32,5 +34,3 @@ const maxIndex = (str: string): number => {
   }
   return index;
 };
-
-const sum = (acc, n) => acc + n;

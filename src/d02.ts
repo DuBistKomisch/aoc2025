@@ -1,3 +1,5 @@
+import { sum } from './util';
+
 export function p1(input: string) {
   const ranges = input.trim().split(',');
   const invalid = new Set();
@@ -10,7 +12,7 @@ export function p1(input: string) {
       find(invalid, a, b, 2);
     }
   }
-  return sum(invalid);
+  return sumSet(invalid);
 };
 
 export function p2(input: string) {
@@ -25,7 +27,7 @@ export function p2(input: string) {
       segments(invalid, a, b);
     }
   }
-  return sum(invalid);
+  return sumSet(invalid);
 };
 
 const segments = (invalid, a, b) => {
@@ -48,6 +50,6 @@ const find = (invalid, a, b, segments) => {
   }
 };
 
-const sum = (set) => {
-  return Array.from(set).reduce((acc, n) => acc + n, 0);
+const sumSet = (set) => {
+  return Array.from(set).reduce(sum, 0);
 };
