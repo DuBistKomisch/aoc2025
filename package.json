@@ -14,6 +14,7 @@
     "d02": "bun src/index.ts d02 < input/d02",
     "d03": "bun src/index.ts d03 < input/d03",
     "d04": "bun src/index.ts d04 < input/d04",
-    "d05": "bun src/index.ts d05 < input/d05"
+    "d05": "bun src/index.ts d05 < input/d05",
+    "d06": "bun src/index.ts d06 < input/d06"
   }
 }
