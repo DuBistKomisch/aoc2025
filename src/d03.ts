@@ -17,16 +17,16 @@ const maxDigits = (str: string, n: number): number => {
   let digits = '';
   for (let i = 0; i < n; i++) {
     lastIndex += maxIndex(str.substring(lastIndex + 1, str.length - (n - i - 1))) + 1;
-    digits += str.charAt(lastIndex);
+    digits += str[lastIndex];
   }
   return parseInt(digits, 10);
 }
 
 const maxIndex = (str: string): number => {
-  let max = str.charAt(0);
+  let max = str[0];
   let index = 0;
   for (let i = 1; i < str.length; i++) {
-    const char = str.charAt(i);
+    const char = str[i];
     if (char > max) {
       max = char;
       index = i;

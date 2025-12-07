@@ -1,7 +1,9 @@
+import { Point } from './point';
+
 export function p1(input: string) {
   const grid = buildGrid(input);
   return Array.from(grid.values())
-    .filter(([x, y]) => isAccessible(grid, x, y))
+    .filter(point => isAccessible(grid, point))
     .length;
 };
 
@@ -11,9 +13,9 @@ export function p2(input: string) {
   let lastRemoved = 0;
   do {
     lastRemoved = removed;
-    for (const [point, [x, y]] of grid.entries()) {
-      if (isAccessible(grid, x, y)) {
-        grid.delete(point);
+    for (const [hash, point] of grid.entries()) {
+      if (isAccessible(grid, point)) {
+        grid.delete(hash);
         removed++;
       }
     }
@@ -26,24 +28,25 @@ const buildGrid = (input: string) => {
   const grid = new Map();
   for (let y = 0; y < lines.length; y++) {
     for (let x = 0; x < lines[y].length; x++) {
-      if (lines[y].charAt(x) === '@') {
-        grid.set(`${x},${y}`, [x, y]);
+      if (lines[y][x] === '@') {
+        const point = new Point(x, y);
+        grid.set(point.hash(), point);
       }
     }
   }
   return grid;
 }
 
-const isAccessible = (grid: Map<string>, x: number, y: number): boolean => {
+const isAccessible = (grid: Map<string>, point: Point): boolean => {
   const adjacent = [
-    `${x - 1},${y - 1}`,
-    `${x},${y - 1}`,
-    `${x + 1},${y - 1}`,
-    `${x + 1},${y}`,
-    `${x + 1},${y + 1}`,
-    `${x},${y + 1}`,
-    `${x - 1},${y + 1}`,
-    `${x - 1},${y}`
-  ].filter(other => grid.get(other)).length;
+    point.northwest(),
+    point.north(),
+    point.northeast(),
+    point.east(),
+    point.southeast(),
+    point.south(),
+    point.southwest(),
+    point.west()
+  ] .filter(other => grid.get(other.hash())).length;
   return adjacent < 4;
 }
