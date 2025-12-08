@@ -16,6 +16,10 @@
     "d04": "bun src/index.ts d04 < input/d04",
     "d05": "bun src/index.ts d05 < input/d05",
     "d06": "bun src/index.ts d06 < input/d06",
-    "d07": "bun src/index.ts d07 < input/d07"
+    "d07": "bun src/index.ts d07 < input/d07",
+    "d08": "bun src/index.ts d08 < input/d08"
+  },
+  "dependencies": {
+    "mnemonist": "^0.40.3"
   }
 }

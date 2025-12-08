@@ -4,10 +4,6 @@ export class Point {
     this.y = y;
   }
 
-  toString() {
-    return `Point(${this.x},${this.y})`;
-  }
-
   hash() {
     return `${this.x},${this.y}`;
   }
