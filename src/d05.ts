@@ -1,16 +1,25 @@
 import { sum } from './util';
+const StaticIntervalTree = require('mnemonist/static-interval-tree');
 
 export function p1(input: string) {
   const [rangesInput, available] = input.trim().split('\n\n');
-  const ranges = parseRanges(rangesInput);
+  const ranges = buildOptimisedRanges(input.trim().split('\n\n')[0]);
+  const rangeTree = StaticIntervalTree.from(ranges);
   return available.split('\n')
     .map(n => parseInt(n, 10))
-    .filter(n => ranges.some(([min, max]) => n >= min && n <= max))
+    .filter(n => rangeTree.intervalsContainingPoint(n).length > 0)
     .length;
 };
 
 export function p2(input: string) {
-  const ranges = parseRanges(input.trim().split('\n\n')[0]);
+  const ranges = buildOptimisedRanges(input.trim().split('\n\n')[0]);
+  return ranges.map(([min, max]) => max - min + 1)
+    .reduce(sum, 0);
+};
+
+const buildOptimisedRanges = (input: string) => {
+  const ranges = input.split('\n')
+    .map(range => range.split('-').map(n => parseInt(n, 10)));
   ranges.sort(([minA, maxA], [minB, maxB]) =>
     minA === minB ? maxA - maxB : minA - minB);
   let i = 0;
@@ -24,11 +33,5 @@ export function p2(input: string) {
       i++;
     }
   }
-  return ranges.map(([min, max]) => max - min + 1)
-    .reduce(sum, 0);
-};
-
-const parseRanges = (ranges) => {
-  return ranges.split('\n')
-    .map(range => range.split('-').map(n => parseInt(n, 10)));
+  return ranges;
 };
