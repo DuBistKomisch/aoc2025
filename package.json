@@ -24,6 +24,7 @@
     "d12": "bun src/index.ts d12 < input/d12"
   },
   "dependencies": {
-    "mnemonist": "^0.40.3"
+    "mnemonist": "^0.40.3",
+    "yalps": "^0.6.4"
   }
 }
